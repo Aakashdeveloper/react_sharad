@@ -5,21 +5,29 @@ import React, {Component} from 'react';
 }*/
  
 class Header extends Component{
-    render(){
 
-        const styles = {
-            sharad:{
-                background:'skyblue'
-            },
-            aakash:{
-                color:'red'
-            }
+    constructor(props){
+        super(props)
+
+        this.state={
+            keywords:'JOHN',
+            title:"This is user search"
         }
+    }
+
+    inputChange(event){
+        console.log(event.target.value)
+        this.setState({keywords:event.target.value})
+    }
+    render(){
         return(
-            <header style={styles.sharad}>
+            <header>
                 <h1>FirstApp</h1>
-                <div style={styles.aakash}> Logo</div>
-                <input/>
+                <div className="logo"
+                onClick={()=>console.log('clicked')}> Logo</div>
+                <input onChange={this.inputChange.bind(this)} />
+                <p>{this.state.title}</p>
+                <p>{this.state.keywords}</p>
             </header>
         )
     }
