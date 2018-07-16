@@ -17,12 +17,13 @@ class Header extends Component{
 
     inputChange(event){
         console.log(event.target.value)
-        this.setState({keywords:event.target.value})
+        this.setState({keywords:event.target.value});
+        this.props.newsSearch(event.target.value)
     }
+
     render(){
         return(
             <header>
-                <h1>FirstApp</h1>
                 <div className="logo"
                 onClick={()=>console.log('clicked')}> Logo</div>
                 <input onChange={this.inputChange.bind(this)} />
