@@ -4,9 +4,11 @@ import NewsItem from './news_item';
 const newsList = (props) =>{
 
     const items = props.news.map((item)=>{
-        return(
-            <NewsItem item={item} key={item.id}/>
-        )
+        if(item){
+            return(
+                <NewsItem item={item} key={item.id}/>
+            )
+        }
     })
 
 
