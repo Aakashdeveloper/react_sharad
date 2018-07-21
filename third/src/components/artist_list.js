@@ -24,7 +24,7 @@ const ArtistList = (props) => {
     }
 
     return(
-        <div class="artists_list">
+        <div className="artists_list">
             <h4>Browse All Artist</h4>
             {list(props)}
 
