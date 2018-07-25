@@ -10,14 +10,22 @@ module.exports = {
     module: {
         rules:[
             {
-                test:/\.tsx/$,
+                test:/\.tsx?$/,
                 loader:'awesome-typescript-loader'
+            },{
+                enforce:"pre",
+                test:/\.js$/,
+                loader:"source-map-loader"
             }
         ]
     },
     plugins:[
         new HtmlWebpackPlugin({
-            template:"./index.html"
+            template:'./index.html'
         })
-    ]
+    ],
+    devtool:"source-map",
+    resolve:{
+        exntensions:[".js", ".ts", ".tsx"]
+    }
 }

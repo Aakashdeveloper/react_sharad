@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+import { App } from './components/App'
+
 const ROOT = document.getElementById("root");
 
-ReactDOM.render(<h1>React with TypeScript</h1>, ROOT);
+ReactDOM.render(<App />, ROOT);
