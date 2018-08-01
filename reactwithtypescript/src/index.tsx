@@ -6,4 +6,4 @@ import "./styles/style.scss";
 
 const ROOT = document.getElementById("root");
 
-ReactDOM.render(<App name="sharad"/>, ROOT);
+ReactDOM.render(<App/>, ROOT);
