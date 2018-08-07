@@ -16,12 +16,13 @@ export class App extends React.Component<{}, IState>{
         console.log("i am clicked")
         e.preventDefault()
         this.setState({
-            currentTask: "",
+            //currentTask: "",
             tasks:[
                 ...this.state.tasks,
                 {
                     id: this._thisInMilliSecond(),
-                    value : this.state.currentTask
+                    value : this.state.currentTask,
+                    completed: false
                 } 
             ]
         })
@@ -35,15 +36,21 @@ export class App extends React.Component<{}, IState>{
         this.setState({tasks: filteredTasks})
     }
     
-   
+    public toggleDone(index: number): void{
+        let task: ITask[] = this.state.tasks.splice(index, 1);
+        task[0].completed = !task[0].completed;
+        const currentTasks: ITask[] = [...this.state.tasks, ...task];
+        this.setState({tasks: currentTasks});
+
+    }
 
     public renderTask(): JSX.Element[]{
         return this.state.tasks.map((task:ITask, index:number)=>{
             return(
-                <div key={task.id}>
-                    <span>{task.value}</span>
+                <div key={task.id} className="tdl-task">
+                    <span className={task.completed ? "is-completed": ""}>{task.value}</span>
                     <button onClick= {()=>this.deleteTask(task.id)}>Delete</button>
-                   
+                    <button onClick={()=>this.toggleDone(index)}>{task.completed ? "undo":"done"}</button>
                 </div>
             )
         })
@@ -56,6 +63,7 @@ export class App extends React.Component<{}, IState>{
                 <h1>React With typeScript</h1>
                 <form onSubmit={(e) => this.handleSubmit(e)}>
                     <input type="text" placeholder="Add your task" 
+                    className="tdl-input"
                         onChange={(e)=>this.setState({currentTask: e.target.value})}/>
                     <button type="submit">Add Task</button>
                 </form>
@@ -79,5 +87,6 @@ interface IState{
 
 interface ITask{
     id: number,
-    value: string
+    value: string,
+    completed: boolean
 }
